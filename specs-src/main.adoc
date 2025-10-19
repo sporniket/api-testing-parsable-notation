@@ -65,30 +65,39 @@ The section entitled _Part 1_ ends where the section entitled _Part 2_ begins, t
 
 In section _Part 1_, there is a sub-section entitled _Detail 1_ that ends weher the sub-section _Detail 2_ begins ; the later ends at the begining of the section _Part 2_.
 
+_Part 1_ and _Part 2_ are level 2 sections ; _Detail 1_ and _Detail 2_ are level 3 sections.
 
-=== Structured document using "key expressions"
+=== "Key expressions" to identify parts of the test scenario
 
-A test scenario file is composed of distinct sections, identified by "key expressions" in a header line. A key expression is a string enclosed by colons (e.g., `:KeyExpression:`), and they are case-insensitive. 
+A test scenario file is a GFM document that contains a single level 1 section, whose title is the title of the scenario.
 
-Any content from a section that does not begin with a key expression, and its content, is considered a comment and is ignored by parsers.
+That section contains level 2 sections that are identified as parts of the screnario by having their title starting with a _key expressions_. 
 
-The primary structural elements (header line starting with 2 hash characters `##`) of a test scenario are:
+A key expression is a string enclosed by colons (e.g., `:KeyExpression:`), and it is case-insensitive. 
 
-* *:Preamble:*: Defines global configurations and hooks that execute before, between, or after test steps.
-* *:Step:*: Defines individual test actions, typically involving an HTTP request and associated logic.
+Any section that does not begin with a key expression is considered a comment and is ignored by parsers.
+
+The expected sections of a test scenario are:
+
+* *:Preamble:*: Defines global configurations and hooks that execute before, between, or after test steps. *There is _only one_ `:Preamble:` section.*
+* *:Step:*: Defines individual test actions, typically involving an HTTP request and associated logic. *There is _at least one_ `:Step:` section.*
 
 Sections are declared sequentially within the file.
 
-=== Scripting language support
+=== Programming language support
 
-Testing an API using a scenario, i.e. a sequence of API calls, requires some processing in between the actual call.
+Testing an API using a scenario, i.e. a sequence of API calls, requires some processing in between the actual calls.
 
-_For the sake of simplicity, this document will use Javascript. However, any programming language is usable._
+This document will describe the means provided to specify the actual processing using a programming language.
 
-There are two constraints :
+There is no constraint about the programming language to use.
+
+On the other hand, there are two rules to follow :
 
 * There is only one programming language used throughout the scenario. E.g., one cannot find some fenced blocks in Javascript, and other fenced blocks in Python. _The document is malformed in such case._
 * The fenced blocks containing statements in the chosen programming language MUST target that programming language. E.g. a scenario that uses the Java programming language MUST use the keyword `java` for its fenced blocks describing the processings.
+
+_For the sake of simplicity, this document will provides sample scenario that uses Javascript._
 
 == The Preamble Section
 
